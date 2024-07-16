@@ -1,5 +1,6 @@
 import React from 'react';
 import { PlusIcon, ChevronLeft, ChevronRight } from 'lucide-react';
+import ToDoList from './ToDoList';
 
 const AbstractBook = () => {
   return (
@@ -11,8 +12,7 @@ const AbstractBook = () => {
             <ChevronLeft className="text-gray-600 cursor-pointer" size={24} />
             <PlusIcon className="text-gray-600" size={24} />
           </div>
-          <h2 className="text-2xl font-bold mb-4">Left Panel Title</h2>
-          <p className="text-gray-700">Content of the left panel goes here.</p>
+          <ToDoList />
         </div>
 
         {/* Right Panel */}
@@ -21,8 +21,6 @@ const AbstractBook = () => {
             <PlusIcon className="text-gray-600" size={24} />
             <ChevronRight className="text-gray-600 cursor-pointer" size={24} />
           </div>
-          <h2 className="text-2xl font-bold mb-4">Right Panel Title</h2>
-          <p className="text-gray-700">Content of the right panel goes here.</p>
         </div>
       </div>
     </div>

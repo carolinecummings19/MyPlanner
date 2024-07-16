@@ -60,6 +60,10 @@ export default function Signup() {
     }
   };
 
+  const login = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="w-screen h-screen bg-[--light-taupe-grey] overflow-scroll flex items-center justify-center ">
       <form onSubmit={handleSubmit} className="w-[30%] min-w-[340px]">
@@ -171,11 +175,21 @@ export default function Signup() {
           <div className="w-full flex justify-center px-4">
             <button
               type="submit"
-              className="px-4 py-2 w-full mt-2 rounded-md bg-[--cambridge-blue] hover:bg-[--khaki] outline-none font-bold text-white"
+              className="px-4 py-3 w-full my-2 rounded-md bg-[--cambridge-blue] hover:bg-[--khaki] outline-none font-bold text-white"
             >
               Sign up
             </button>
           </div>
+          <p class="text-center">Already have an account?</p>
+            <div className="w-full flex justify-center px-4">
+              <button
+                type="button"
+                className="px-4 py-3 w-full rounded-md bg-[--cambridge-blue] hover:bg-[--khaki] outline-none font-bold text-white"
+                onClick={login}
+              >
+                Login
+              </button>
+            </div>
         </div>
       </form>
       <NavBar></NavBar>
