@@ -9,7 +9,6 @@ MyPlanner is a cloud-based to-do list application designed for students and teac
 - Task Management: Create, read, update, and delete tasks.
 - Categorization: Organize tasks by categories like Homework, Exams, and Projects.
 - Reminders: Set reminders for tasks via email or push notifications.
-- Cloud Synchronization: Sync tasks across devices using cloud storage.
 - User Authentication: Secure user registration and login.
 
 ## Technologies Used
