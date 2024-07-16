@@ -1,0 +1,86 @@
+/** @format */
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800;900&family=Prompt:ital,wght@0,400;0,600;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.all-\[unset\] {
+		all: unset;
+	}
+}
+
+:root {
+	font-family: Gabarito;
+
+	--black: #000000ff;
+	--cambridge-blue: #839788ff;
+	--champagne: #eee0cbff;
+	--khaki: #baa898ff;
+	--columbia-blue: #bfd7eaff;
+
+	--light-taupe-grey: #f2f2f2f0;
+	/* line-height: 1.5;
+	font-weight: 400;
+
+	color-scheme: light dark;
+	color: rgba(255, 255, 255, 0.87);
+	background-color: #242424;
+    */
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: var(--light-taupe-grey);
+	transition-property: color, background-color, border-color,
+		text-decoration-color, fill, stroke, opacity, box-shadow, transform,
+		filter, backdrop-filter;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
+}
+
+body {
+	margin: 0;
+	display: flex;
+	place-items: center;
+	min-width: 320px;
+	min-height: 100vh;
+}
+
+h1 {
+	font-size: 3.2em;
+	line-height: 1.1;
+}
+
+button {
+	border-radius: 8px;
+
+	cursor: pointer;
+	transition-property: color, background-color, border-color,
+		text-decoration-color, fill, stroke, opacity, box-shadow, transform,
+		filter, backdrop-filter;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
+}
+button:hover {
+	border-color: var(--khaki);
+}
+button:focus,
+button:focus-visible {
+	outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		color: #213547;
+		background-color: #ffffff;
+	}
+	a:hover {
+		color: #747bff;
+	}
+	button {
+		background-color: #f9f9f9;
+	}
+}
+
