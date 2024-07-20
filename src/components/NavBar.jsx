@@ -39,8 +39,7 @@ function NavBar() {
       const response = await axios.post(`${rootURL}/logout`);
 
       if (response.status == 200) {
-        socket.emit("userDisconnect");
-        navigate("/");
+        navigate("/login");
       } else {
         alert("Log out failed.");
       }

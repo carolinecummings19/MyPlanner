@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { XIcon, CheckIcon } from "lucide-react";
+import { XIcon, CheckIcon, StarIcon } from "lucide-react";
 
-const ToDoList = () => {
+const Priorities = () => {
   const [tasks, setTasks] = useState(
-    Array(5)
+    Array(3)
       .fill(0)
       .map(() => ({ text: "", completed: false }))
   );
@@ -35,15 +35,15 @@ const ToDoList = () => {
   };
 
   return (
-    <div className="h-[390px] w-[276px] mx-auto p-1 bg-white border border-slate-500 shadow rounded">
+    <div className="h-[190px] w-[276px] mx-auto p-1 bg-white border border-slate-500 shadow rounded">
       <h2 className="font-bold mb-2 bg-[--champagne] p-0.5 px-2 border shadow rounded-sm w-full">
-        To-Do List
+        Priorities
       </h2>
-      <div className="overflow-scroll h-[347px]">
+      <div className="overflow-scroll h-[147px]">
         {tasks.map((task, index) => (
           <div key={index} className="flex items-center mb-2 px-1">
             <div className="relative">
-              <input
+              {/* <input
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => handleToggleComplete(index)}
@@ -54,19 +54,27 @@ const ToDoList = () => {
               />
               {task.completed && (
                 <div className="absolute top-0.5 left-0 flex items-center justify-center mx-1 h-4 w-4">
-                  <CheckIcon onClick={() => handleToggleComplete(index)} />
+                  <StarIcon onClick={() => handleToggleComplete(index)} />
                 </div>
-              )}
+              )} */}
+              <StarIcon
+                onClick={() => handleToggleComplete(index)}
+                className={`mx-0.5`}
+                size={20}
+                color={task.completed ? "#fd6" : "#ccc"}
+                fill={task.completed ? "#fd6" : "#fff"}
+                style={{ cursor: "pointer" }}
+              />
             </div>
             <textarea
               type="text"
               value={task.text}
               onChange={(e) => handleTaskChange(index, e)}
               onInput={(e) => adjustHeight(e.target)}
-              className={`flex-grow p-1 mx-1 border resize-none h-[35px] ${
+              className={`flex-grow p-1 mx-1 h-[35px] border resize-none ${
                 task.completed ? "line-through" : ""
               }`}
-              placeholder={`Task ${index + 1}`}
+              placeholder={`Priority ${index + 1}`}
             />
             <button
               onClick={() => handleRemoveTask(index)}
@@ -89,4 +97,4 @@ const ToDoList = () => {
   );
 };
 
-export default ToDoList;
+export default Priorities;

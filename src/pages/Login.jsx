@@ -4,8 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import config from "../../config.json";
 import { useNavigate } from "react-router-dom";
-import NavBar from '../components/NavBar.jsx';
-import BottomBar from '../components/BottomBar.jsx';
+import NavBar from "../components/NavBar.jsx";
+import BottomBar from "../components/BottomBar.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -84,7 +84,7 @@ export default function Login() {
                 Log in
               </button>
             </div>
-			<p class="text-center">Don't have an account?</p>
+            <p class="text-center">Don't have an account?</p>
             <div className="w-full flex justify-center">
               <button
                 type="button"
@@ -97,8 +97,8 @@ export default function Login() {
           </div>
         </form>
       </div>
-	  <NavBar></NavBar>
-	  <BottomBar></BottomBar>
+      <NavBar></NavBar>
+      <BottomBar></BottomBar>
     </div>
   );
 }
