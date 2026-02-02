@@ -1,82 +1,49 @@
 import React, { useState } from "react";
 
 const MealPlanner = () => {
-  const [breakfast, setBreakfast] = useState("");
+  const [meals, setMeals] = useState({
+    breakfast: "",
+    lunch: "",
+    dinner: "",
+    snacks: "",
+  });
 
-  const handleBreakfastChange = (e) => {
-    setBreakfast(e.target.value);
+  const handleMealChange = (mealType, value) => {
+    setMeals((prev) => ({
+      ...prev,
+      [mealType]: value,
+    }));
   };
 
-  const [lunch, setLunch] = useState("");
-
-  const handleLunchChange = (e) => {
-    setLunch(e.target.value);
-  };
-
-  const [dinner, setDinner] = useState("");
-
-  const handleDinnerChange = (e) => {
-    setDinner(e.target.value);
-  };
-
-  const [snack, setSnack] = useState("");
-
-  const handleSnackChange = (e) => {
-    setSnack(e.target.value);
-  };
-
-  const adjustHeight = (element) => {
-    element.style.height = "inherit";
-    element.style.height = `${element.scrollHeight}px`;
-  };
+  const mealTypes = [
+    { key: "breakfast", label: "Breakfast" },
+    { key: "lunch", label: "Lunch" },
+    { key: "dinner", label: "Dinner" },
+    { key: "snacks", label: "Snacks" },
+  ];
 
   return (
     <div className="w-full h-full flex flex-col bg-white border border-slate-500 shadow rounded overflow-hidden">
       <h2 className="font-bold bg-[--champagne] px-2 py-1 border-b border-slate-500 shadow-sm w-full flex-shrink-0">
         Meal Planner
       </h2>
-      <div className="overflow-y-auto flex-1 p-1">
-        <div className="flex flex-col">
-          <h3 className="bg-gray-200 px-1 border shadow rounded-sm w-min mb-1">
-            Breakfast
-          </h3>
-          <textarea
-            value={breakfast}
-            onChange={handleBreakfastChange}
-            onInput={(e) => adjustHeight(e.target)}
-            className="flex flex-grow p-1 w-full resize-none mb-1"
-            style={{ overflowWrap: "break-word", whiteSpace: "pre-wrap" }}
-          />
-          <h3 className="bg-gray-200 px-1 border shadow rounded-sm w-min mb-1">
-            Lunch
-          </h3>
-          <textarea
-            value={lunch}
-            onChange={handleLunchChange}
-            onInput={(e) => adjustHeight(e.target)}
-            className="flex flex-grow p-1 w-full resize-none mb-1"
-            style={{ overflowWrap: "break-word", whiteSpace: "pre-wrap" }}
-          />
-          <h3 className="bg-gray-200 px-1 border shadow rounded-sm w-min mb-1">
-            Dinner
-          </h3>
-          <textarea
-            value={dinner}
-            onChange={handleDinnerChange}
-            onInput={(e) => adjustHeight(e.target)}
-            className="flex flex-grow p-1 w-full resize-none mb-1"
-            style={{ overflowWrap: "break-word", whiteSpace: "pre-wrap" }}
-          />
-          <h3 className="bg-gray-200 px-1 border shadow rounded-sm w-min mb-1">
-            Snack(s)
-          </h3>
-          <textarea
-            value={snack}
-            onChange={handleSnackChange}
-            onInput={(e) => adjustHeight(e.target)}
-            className="flex flex-grow p-1 w-full resize-none"
-            style={{ overflowWrap: "break-word", whiteSpace: "pre-wrap" }}
-          />
+      <div className="overflow-y-auto flex-1">
+        <div className="flex flex-col divide-y divide-slate-300">
+          {mealTypes.map((meal) => (
+            <div key={meal.key} className="flex flex-col px-3 py-2">
+              <label className="font-semibold text-slate-700 mb-1 text-sm">
+                {meal.label}
+              </label>
+              <textarea
+                value={meals[meal.key]}
+                onChange={(e) => handleMealChange(meal.key, e.target.value)}
+                className="p-1.5 border border-slate-300 rounded text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+                rows="2"
+                placeholder={`Add ${meal.label.toLowerCase()} items...`}
+                style={{ overflowWrap: "break-word", whiteSpace: "pre-wrap" }}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

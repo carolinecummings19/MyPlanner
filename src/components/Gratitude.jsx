@@ -15,7 +15,8 @@ const Gratitude = () => {
       <textarea
         value={note}
         onChange={handleNoteChange}
-        className="flex-grow p-1 resize-none text-sm overflow-y-auto"
+        className="flex-grow p-4 resize-none text-base overflow-y-auto focus:outline-none"
+        placeholder="Write what you're grateful for today..."
         style={{ overflowWrap: "break-word", whiteSpace: "pre-wrap" }}
       />
     </div>

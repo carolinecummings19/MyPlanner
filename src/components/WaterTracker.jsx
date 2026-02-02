@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import {
-  DropletIcon,
-} from "lucide-react";
+import { DropletIcon } from "lucide-react";
 
 const WaterTracker = () => {
   const [waterIntake, setWaterIntake] = useState(0);
@@ -21,7 +19,7 @@ const WaterTracker = () => {
             key={index}
             color={index < waterIntake ? "#59f" : "#ccc"}
             fill={index < waterIntake ? "#59f" : "#fff"}
-            size={28}
+            size={24}
             onClick={() => handleWaterClick(index)}
             style={{ cursor: "pointer" }}
           />

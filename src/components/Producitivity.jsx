@@ -19,7 +19,7 @@ const Productivity = () => {
             key={index}
             color={index < productivity ? "#fd6" : "#ccc"}
             fill={index < productivity ? "#fd6" : "#fff"}
-            size={28}
+            size={24}
             onClick={() => handleProductivityClick(index)}
             style={{ cursor: "pointer" }}
           />

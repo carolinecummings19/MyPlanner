@@ -1,97 +1,142 @@
 import React, { useState } from "react";
-import { XIcon, CheckIcon, StarIcon } from "lucide-react";
+import { Trash2, Plus, Star } from "lucide-react";
 
 const Priorities = () => {
-  const [tasks, setTasks] = useState(
-    Array(3)
-      .fill(0)
-      .map(() => ({ text: "", completed: false }))
-  );
+  const [priorities, setPriorities] = useState([
+    { id: 1, text: "", completed: false, importance: "high" },
+    { id: 2, text: "", completed: false, importance: "medium" },
+    { id: 3, text: "", completed: false, importance: "low" },
+  ]);
+  const [nextId, setNextId] = useState(4);
 
-  const handleTaskChange = (index, event) => {
-    const newTasks = [...tasks];
-    newTasks[index].text = event.target.value;
-    setTasks(newTasks);
+  const handleTextChange = (id, text) => {
+    setPriorities(
+      priorities.map((p) => (p.id === id ? { ...p, text } : p))
+    );
   };
 
-  const handleAddTask = () => {
-    setTasks([...tasks, { text: "", completed: false }]);
+  const handleToggleComplete = (id) => {
+    setPriorities(
+      priorities.map((p) =>
+        p.id === id ? { ...p, completed: !p.completed } : p
+      )
+    );
   };
 
-  const handleRemoveTask = (index) => {
-    const newTasks = tasks.filter((_, i) => i !== index);
-    setTasks(newTasks);
+  const handleImportanceChange = (id, importance) => {
+    setPriorities(
+      priorities.map((p) => (p.id === id ? { ...p, importance } : p))
+    );
   };
 
-  const handleToggleComplete = (index) => {
-    const newTasks = [...tasks];
-    newTasks[index].completed = !newTasks[index].completed;
-    setTasks(newTasks);
+  const handleAddPriority = () => {
+    setPriorities([
+      ...priorities,
+      { id: nextId, text: "", completed: false, importance: "medium" },
+    ]);
+    setNextId(nextId + 1);
   };
 
-  const adjustHeight = (element) => {
-    element.style.height = "initial";
-    element.style.height = `${element.scrollHeight}px`;
+  const handleRemovePriority = (id) => {
+    setPriorities(priorities.filter((p) => p.id !== id));
   };
+
+  const getImportanceColor = (importance) => {
+    switch (importance) {
+      case "high":
+        return "text-red-500";
+      case "medium":
+        return "text-yellow-500";
+      case "low":
+        return "text-green-500";
+      default:
+        return "text-gray-500";
+    }
+  };
+
+  const completedCount = priorities.filter((p) => p.completed).length;
 
   return (
     <div className="w-full h-full flex flex-col bg-white border border-slate-500 shadow rounded overflow-hidden">
+      {/* Header */}
       <h2 className="font-bold bg-[--champagne] px-2 py-1 border-b border-slate-500 shadow-sm w-full flex-shrink-0">
         Priorities
       </h2>
-      <div className="overflow-y-auto flex-1">
-        {tasks.map((task, index) => (
-          <div key={index} className="flex items-center mb-2 px-1 py-1">
-            <div className="relative">
-              {/* <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => handleToggleComplete(index)}
-                className="appearance-none bg-white border border-slate-600 shadow mx-1 h-4 w-4"
-                style={{
-                  backgroundColor: task.completed ? "#839788ff" : "transparent",
-                }}
-              />
-              {task.completed && (
-                <div className="absolute top-0.5 left-0 flex items-center justify-center mx-1 h-4 w-4">
-                  <StarIcon onClick={() => handleToggleComplete(index)} />
-                </div>
-              )} */}
-              <StarIcon
-                onClick={() => handleToggleComplete(index)}
-                className={`mx-0.5`}
-                size={20}
-                color={task.completed ? "#fd6" : "#ccc"}
-                fill={task.completed ? "#fd6" : "#fff"}
-                style={{ cursor: "pointer" }}
-              />
-            </div>
-            <textarea
-              type="text"
-              value={task.text}
-              onChange={(e) => handleTaskChange(index, e)}
-              onInput={(e) => adjustHeight(e.target)}
-              className={`flex-grow p-1 mx-1 h-[35px] border resize-none ${
-                task.completed ? "line-through" : ""
-              }`}
-              placeholder={`Priority ${index + 1}`}
-            />
-            <button
-              onClick={() => handleRemoveTask(index)}
-              className="mr-1 text-red-400 hover:text-red-800 "
-            >
-              <XIcon size={16} />
-            </button>
+
+      {/* Priority List */}
+      <div className="overflow-y-auto flex-1 px-3 py-2 space-y-2">
+        {priorities.length === 0 ? (
+          <div className="flex items-center justify-center h-full text-slate-400">
+            <p>No priorities yet. Add one to get started!</p>
           </div>
-        ))}
-        <div classname="flex flex-row">
-          <button
-            onClick={handleAddTask}
-            className="m-2 px-3 py-1 bg-[--cambridge-blue] text-white rounded hover:bg-[--khaki]"
-          >
-            Add +
-          </button>
-        </div>
+        ) : (
+          priorities.map((priority) => (
+            <div
+              key={priority.id}
+              className={`group flex items-start gap-2 p-3 bg-white border border-slate-200 rounded-lg hover:shadow-md transition-all ${
+                priority.completed ? "opacity-60" : ""
+              }`}
+            >
+              {/* Importance Indicator */}
+              <button
+                onClick={() => {
+                  const importances = ["high", "medium", "low"];
+                  const currentIndex = importances.indexOf(priority.importance);
+                  const nextImportance =
+                    importances[(currentIndex + 1) % importances.length];
+                  handleImportanceChange(priority.id, nextImportance);
+                }}
+                className={`flex-shrink-0 mt-1 ${getImportanceColor(
+                  priority.importance
+                )} hover:scale-110 transition-transform`}
+                title={`Importance: ${priority.importance}`}
+              >
+                <Star size={18} fill="currentColor" />
+              </button>
+
+              {/* Text Input */}
+              <input
+                type="text"
+                value={priority.text}
+                onChange={(e) => handleTextChange(priority.id, e.target.value)}
+                placeholder="Add a priority..."
+                className={`flex-grow bg-transparent border-b border-slate-200 focus:border-[--cambridge-blue] focus:outline-none px-2 py-1 text-sm ${
+                  priority.completed
+                    ? "line-through text-slate-400"
+                    : "text-slate-700"
+                }`}
+              />
+
+              {/* Completion Checkbox */}
+              <input
+                type="checkbox"
+                checked={priority.completed}
+                onChange={() => handleToggleComplete(priority.id)}
+                className="flex-shrink-0 mt-1 cursor-pointer w-5 h-5 accent-[--cambridge-blue]"
+              />
+
+              {/* Delete Button */}
+              <button
+                onClick={() => handleRemovePriority(priority.id)}
+                className="flex-shrink-0 mt-1 text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"
+                title="Delete priority"
+              >
+                <Trash2 size={16} />
+              </button>
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* Add Button */}
+      <div className="border-t border-slate-200 px-3 py-2 bg-slate-50 flex-shrink-0">
+        <button
+          onClick={handleAddPriority}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[--cambridge-blue] text-white rounded-lg hover:bg-blue-600 transition-colors font-medium text-sm shadow-sm"
+        >
+          <Plus size={16} />
+          Add Priority
+        </button>
       </div>
     </div>
   );

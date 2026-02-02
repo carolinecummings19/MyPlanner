@@ -15,8 +15,8 @@ const Notes = () => {
       <textarea
         value={note}
         onChange={handleNoteChange}
-        className="flex-grow p-1 resize-none text-sm overflow-y-auto"
-        placeholder="Type your notes/ideas here..."
+        className="flex-grow p-4 resize-none text-base overflow-y-auto focus:outline-none"
+        placeholder="Start typing your notes..."
         style={{ overflowWrap: "break-word", whiteSpace: "pre-wrap" }}
       />
     </div>

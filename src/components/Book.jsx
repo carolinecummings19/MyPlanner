@@ -57,29 +57,29 @@ const AbstractBook = () => {
             <div className="font-bold text-sm lg:text-base text-[--cambridge-blue] flex-1"></div>
             <ChevronRight className="text-gray-600 cursor-pointer" size={20} />
           </div>
-          <div className="flex flex-col lg:flex-row gap-2 flex-1 overflow-hidden">
-            <div className="flex flex-col gap-2 flex-1 overflow-hidden">
-              <div className="flex-1 overflow-hidden">
+          <div className="flex flex-col lg:flex-row gap-2 flex-1 min-h-0 overflow-hidden">
+            <div className="flex flex-col gap-2 flex-1 min-h-0 overflow-hidden">
+              <div className="flex-none h-48 sm:h-52 overflow-hidden">
                 <Notes />
               </div>
-              <div className="flex-1 overflow-hidden">
+              <div className="flex-none h-20 sm:h-24 overflow-hidden">
                 <Gratitude />
               </div>
-              <div className="flex-1 overflow-hidden">
-                <Productivity />
+              <div className="flex-none h-36 sm:h-40 overflow-hidden">
+                <Weather />
               </div>
-              <div className="flex-1 overflow-hidden">
+              <div className="flex-none h-20 sm:h-24 overflow-hidden">
                 <WaterTracker />
               </div>
             </div>
-            <div className="flex flex-col gap-2 flex-1 overflow-hidden">
-              <div className="overflow-hidden">
-                <Weather />
+            <div className="flex flex-col gap-2 flex-1 min-h-0 overflow-hidden">
+              <div className="flex-none h-20 sm:h-24 overflow-hidden">
+                <Productivity />
               </div>
-              <div className="overflow-hidden">
+              <div className="flex-none h-36 sm:h-40 overflow-hidden">
                 <MoodTracker />
               </div>
-              <div className="flex-1 overflow-hidden">
+              <div className="flex-1 min-h-0 overflow-hidden">
                 <MealPlanner />
               </div>
             </div>

@@ -8,55 +8,60 @@ import {
   AnnoyedIcon,
 } from "lucide-react";
 
-const MoodTracker = () => {
-  const [mood, setMood] = useState("");
+const MOODS = [
+  { id: "very happy", label: "Very happy", icon: LaughIcon, color: "#22c55e" },
+  { id: "happy", label: "Happy", icon: SmileIcon, color: "#14b8a6" },
+  { id: "meh", label: "Meh", icon: MehIcon, color: "#38bdf8" },
+  { id: "sad", label: "Sad", icon: FrownIcon, color: "#6366f1" },
+  { id: "annoyed", label: "Annoyed", icon: AnnoyedIcon, color: "#f59e0b" },
+  { id: "angry", label: "Angry", icon: AngryIcon, color: "#ef4444" },
+];
 
-  const handleMoodClick = (selectedMood) => {
-    setMood(selectedMood);
+const MoodTracker = () => {
+  const [moods, setMoods] = useState([]);
+
+  const toggleMood = (moodId) => {
+    setMoods((prev) =>
+      prev.includes(moodId)
+        ? prev.filter((id) => id !== moodId)
+        : [...prev, moodId]
+    );
   };
 
   return (
-    <div className="w-full h-28 sm:h-32 flex flex-col bg-white border border-slate-500 shadow rounded overflow-hidden">
+    <div className="w-full h-full flex flex-col bg-white border border-slate-500 shadow rounded overflow-hidden">
       <h2 className="font-bold bg-[--champagne] px-2 py-1 border-b border-slate-500 shadow-sm w-full flex-shrink-0">
         Mood
       </h2>
-      <div className="flex justify-center items-center gap-2 flex-1 flex-wrap p-1">
-        <LaughIcon
-          color={mood === "very happy" ? "#3c3" : "#ccc"}
-          size={32}
-          onClick={() => handleMoodClick("very happy")}
-          style={{ cursor: "pointer" }}
-        />
-        <SmileIcon
-          color={mood === "happy" ? "#3da" : "#ccc"}
-          size={32}
-          onClick={() => handleMoodClick("happy")}
-          style={{ cursor: "pointer" }}
-        />
-        <MehIcon
-          color={mood === "meh" ? "#8cf" : "#ccc"}
-          size={40}
-          onClick={() => handleMoodClick("meh")}
-          style={{ cursor: "pointer" }}
-        />
-        <FrownIcon
-          color={mood === "sad" ? "#56d" : "#ccc"}
-          size={40}
-          onClick={() => handleMoodClick("sad")}
-          style={{ cursor: "pointer" }}
-        />
-        <AnnoyedIcon
-          color={mood === "annoyed" ? "#fc0" : "#ccc"}
-          size={40}
-          onClick={() => handleMoodClick("annoyed")}
-          style={{ cursor: "pointer" }}
-        />
-        <AngryIcon
-          color={mood === "angry" ? "#e44" : "#ccc"}
-          size={40}
-          onClick={() => handleMoodClick("angry")}
-          style={{ cursor: "pointer" }}
-        />
+      <div className="flex flex-col gap-2 flex-1 p-2">
+        <div className="grid grid-cols-3 gap-2">
+          {MOODS.map((option) => {
+            const Icon = option.icon;
+            const isActive = moods.includes(option.id);
+            return (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => toggleMood(option.id)}
+                className={`flex items-center gap-2 px-2 py-2 rounded border-2 text-left transition ${
+                  isActive
+                    ? ""
+                    : "border-slate-200 hover:bg-slate-50"
+                }`}
+                style={isActive ? { borderColor: option.color, backgroundColor: option.color + "15" } : {}}
+              >
+                <span
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full"
+                >
+                  <Icon color={isActive ? option.color : "#94a3b8"} size={20} />
+                </span>
+                <span className="text-xs font-medium text-slate-700">
+                  {option.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
