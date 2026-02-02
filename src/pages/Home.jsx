@@ -30,13 +30,16 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-[--light-taupe-grey]">
-      <div className="h-full mx-auto my-[10px] ml-[150px] max-w-[1800px] flex flex-col items-center overflow-scroll">
-        <div className="w-screen h-screen bg-[--light-taupe-grey] overflow-scroll flex items-center justify-center">
-          <Book></Book>
+    <div className="w-screen h-screen bg-[--light-taupe-grey] flex flex-col">
+      <div className="flex flex-1 overflow-hidden">
+        {/* <NavBar></NavBar> */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <NavBar></NavBar>
+          <div className="flex-1 overflow-auto flex items-center justify-center p-3 ml-12 mb-4">
+            <Book></Book>
+          </div>
         </div>
       </div>
-      <NavBar></NavBar>
       <BottomBar></BottomBar>
     </div>
   );

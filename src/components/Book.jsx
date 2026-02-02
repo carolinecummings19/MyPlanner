@@ -24,44 +24,64 @@ const AbstractBook = () => {
   });
 
   return (
-    <div className="justify-center items-center min-h-screen h-screen bg-gray-100 overflow-scroll">
-      <div className="bg-white shadow-md rounded overflow-auto w-[1250px] h-[670px] flex mb-14 mt-8 ml-36 mr-24 border border-gray-400">
+    <div className="w-full h-full bg-gray-100 overflow-hidden p-2">
+      <div className="bg-white shadow-md rounded w-full h-full flex flex-col lg:flex-row border border-gray-400 overflow-hidden">
         {/* Left Panel */}
-        <div className="w-1/2 p-6">
+        <div className="w-full lg:w-1/2 p-2 lg:p-3 flex flex-col border-b lg:border-b-0 lg:border-r border-gray-200 overflow-hidden">
           <div className="flex justify-between items-center mb-2">
-            <ChevronLeft className="text-gray-600 cursor-pointer" size={24} />
-            <div className="font-bold text-xl text-[--cambridge-blue] mr-auto">
+            <ChevronLeft className="text-gray-600 cursor-pointer" size={20} />
+            <div className="font-bold text-sm lg:text-base text-[--cambridge-blue] flex-1 text-center">
               {formattedDate}
             </div>
-            <PlusIcon className="text-gray-600" size={24} />
+            <PlusIcon className="text-gray-600" size={20} />
           </div>
-          <div className="flex flex-row justify-between">
-            <Schedule />
-            <div className="flex flex-col justify-between">
-              <Priorities />
-              <ToDoList />
+          <div className="flex flex-col lg:flex-row gap-2 flex-1 overflow-hidden">
+            <div className="flex-1 overflow-hidden">
+              <Schedule />
+            </div>
+            <div className="flex flex-col gap-2 flex-1 overflow-hidden">
+              <div className="flex-1 overflow-hidden">
+                <Priorities />
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <ToDoList />
+              </div>
             </div>
           </div>
         </div>
 
         {/* Right Panel */}
-        <div className="w-1/2 p-6 pr-9 border-l border-gray-200">
-          <div className="flex justify-between items-center mb-3">
-            <PlusIcon className="text-gray-600" size={24} />
-            <div className="font-bold text-xl text-[--cambridge-blue] mr-auto"></div>
-            <ChevronRight className="text-gray-600 cursor-pointer " size={24} />
+        <div className="w-full lg:w-1/2 p-2 lg:p-3 flex flex-col overflow-hidden">
+          <div className="flex justify-between items-center mb-2">
+            <PlusIcon className="text-gray-600" size={20} />
+            <div className="font-bold text-sm lg:text-base text-[--cambridge-blue] flex-1"></div>
+            <ChevronRight className="text-gray-600 cursor-pointer" size={20} />
           </div>
-          <div className="flex flex-row" style={{ display: "flex", justifyContent: "center", gap: "12px" }}>
-            <div className="flex flex-col" style={{ display: "flex", justifyContent: "top", gap: "10px" }}>
-              <Notes />
-              <Gratitude />
-              <Productivity />
-              <WaterTracker />
+          <div className="flex flex-col lg:flex-row gap-2 flex-1 overflow-hidden">
+            <div className="flex flex-col gap-2 flex-1 overflow-hidden">
+              <div className="flex-1 overflow-hidden">
+                <Notes />
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <Gratitude />
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <Productivity />
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <WaterTracker />
+              </div>
             </div>
-            <div className="flex flex-col" style={{ display: "flex", gap: "10px" }}>
-              <Weather />
-              <MoodTracker />
-              <MealPlanner />
+            <div className="flex flex-col gap-2 flex-1 overflow-hidden">
+              <div className="overflow-hidden">
+                <Weather />
+              </div>
+              <div className="overflow-hidden">
+                <MoodTracker />
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <MealPlanner />
+              </div>
             </div>
           </div>
         </div>

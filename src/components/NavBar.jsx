@@ -82,20 +82,24 @@ function NavBar() {
 
   return (
     <div
-      className={`fixed bg-[--champagne] text-[--black] border-r-[3px] border-gray ${
-        isExpanded ? "w-25" : "w-1"
-      } h-full left-0 bottom-0 bg-[--champagne] flex flex-col border-r-[3px] border-gray`}
+      className={`fixed bg-[--champagne] text-[--black] border-r-[3px] border-gray h-full left-0 bottom-0 bg-[--champagne] flex flex-col border-r-[3px] border-gray transition-all duration-300 ease-in-out ${
+        isExpanded ? "w-64" : "w-16"
+      }`}
     >
       <div
         onClick={toggleSidebar}
-        className="flex flex-row mx-auto items-center w-[200px] py-[25px] px-[15px] text-[--black] hover:text-slate-500 rounded-md transition "
+        className="flex flex-row items-center py-[25px] px-[15px] text-[--black] hover:text-slate-50 rounded-md"
       >
-        <div><Menu className="my-auto mx-[10px]" size={30} /></div>
-		<div className='font-bold text-xl mx-[10px] my-[15px]'>MyPlanner</div>
+        <Menu className="my-auto mx-[10px] flex-shrink-0" size={20} />
+        <div className={`font-bold text-xl mx-[10px] whitespace-nowrap transition-opacity duration-300 ${
+          isExpanded ? "opacity-100" : "opacity-0"
+        }`}>MyPlanner</div>
       </div>
-      <div>
+      <div className="flex-1 overflow-y-auto">
         {isExpanded && (
-          <div>
+          <div className={`space-y-2 p-2 transition-all duration-300 ${
+            isExpanded ? "opacity-100" : "opacity-0"
+          }`}>
             <div>
               {isActive("/login") ? (
                 <div
