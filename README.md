@@ -2,7 +2,7 @@
 
 A modern, cloud-based planner application designed for students and teachers to manage their daily tasks, schedules, and goals with an intuitive, paper-planner-inspired interface.
 
-![MyPlanner Banner](<!-- Add banner image path here -->)
+<img width="1407" height="694" alt="Screenshot 2026-02-02 at 12 02 42 AM" src="https://github.com/user-attachments/assets/8b4c08d6-ec82-46d5-8dc7-6211a21d16da" />
 
 ## 📋 Table of Contents
 
@@ -40,28 +40,6 @@ MyPlanner is a comprehensive productivity application that brings the familiarit
 - **🔐 User Authentication**: Secure login and signup functionality
 - **👤 User Profiles**: Personalized user experience
 - **🎨 Customization Options**: Tailor the app to your preferences
-
-## 📸 Screenshots
-
-### Home Dashboard
-![Home Dashboard](<!-- Add screenshot path here -->)
-
-*Main dashboard view with all planner components*
-
-### To-Do List & Schedule
-![To-Do List](<!-- Add screenshot path here -->)
-
-*Task management and daily scheduling interface*
-
-### Mood & Habit Tracking
-![Trackers](<!-- Add screenshot path here -->)
-
-*Mood tracker, water tracker, and wellness features*
-
-### Mobile Responsive View
-![Mobile View](<!-- Add screenshot path here -->)
-
-*Fully responsive design for on-the-go planning*
 
 ## 🛠️ Technologies
 
